@@ -37,7 +37,7 @@ data_columns = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
 
 @app.get("/")
 async def root():
-    return "shalom"
+    return "hello from the root"
 
 
 @app.post("/diagnose/")
