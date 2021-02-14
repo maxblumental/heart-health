@@ -4,7 +4,7 @@
 
 ```shell
 python setup.py sdist
-pip install sdist/<something>.tar
+pip install dist/<something>.tar
 train_pipeline configs/config.yaml
 ```
 
