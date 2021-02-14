@@ -1,3 +1,4 @@
+import os
 import pickle
 
 import pandas as pd
@@ -24,13 +25,19 @@ class Features(BaseModel):
 
 app = FastAPI()
 
-with open("models/model.pkl", "rb") as f:
+with open(os.path.join(os.getenv("MODEL_PATH"), "model.pkl"), "rb") as f:
     model = pickle.loads(f.read())
 
-with open("models/transformer.pkl", "rb") as f:
+with open(os.path.join(os.getenv("MODEL_PATH"), "transformer.pkl"), "rb") as f:
     transformer = pickle.loads(f.read())
 
-data_columns = pd.read_csv("data/raw/heart.csv").columns
+data_columns = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
+                'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal', 'target']
+
+
+@app.get("/")
+async def root():
+    return "shalom"
 
 
 @app.post("/diagnose/")
@@ -43,4 +50,4 @@ async def diagnose(features: Features):
 
 
 if __name__ == '__main__':
-    uvicorn.run("server:app", access_log=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, access_log=True)
