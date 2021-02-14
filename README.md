@@ -11,6 +11,7 @@ train_pipeline configs/config.yaml
 ## 2. Prediction API
 
 ```shell
+cp -r models/ predict/
 cd predict
 docker build -t <name>:<tag>
 docker run -p 8000:8000 <name>:<tag>
