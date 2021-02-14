@@ -3,3 +3,4 @@ data/raw/*
 models/*
 *.egg-info/*
 venv/
+*__pycache__/*
